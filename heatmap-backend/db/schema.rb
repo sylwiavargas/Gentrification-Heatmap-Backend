@@ -10,22 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_24_191946) do
+ActiveRecord::Schema.define(version: 2019_05_28_162325) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.integer "datum_id"
-    t.integer "comment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["comment_id"], name: "index_categories_on_comment_id"
-    t.index ["datum_id"], name: "index_categories_on_datum_id"
   end
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_comments_on_category_id"
   end
 
   create_table "data", force: :cascade do |t|
@@ -38,4 +39,5 @@ ActiveRecord::Schema.define(version: 2019_05_24_191946) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "comments", "categories"
 end

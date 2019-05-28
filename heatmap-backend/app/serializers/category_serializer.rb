@@ -1,6 +1,5 @@
 class CategorySerializer < ActiveModel::Serializer
-  attributes :id, :name, :datum_id, :comment_id
+  attributes :id, :name
 
-  belongs_to :datum
-  belongs_to :comment
+  has_many :comments
 end
