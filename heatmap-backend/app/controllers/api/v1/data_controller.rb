@@ -1,13 +1,13 @@
-class DataController < ApplicationController
+class Api::V1::DataController < ApplicationController
 
   def create
      @datum = Datum.new(datum_params)
      @datum.save
   end
 
-  def new
-    @datum = Datum.new
-  end
+  # def new
+  #   @datum = Datum.new
+  # end
 
   def index
   	@data.Datum.all

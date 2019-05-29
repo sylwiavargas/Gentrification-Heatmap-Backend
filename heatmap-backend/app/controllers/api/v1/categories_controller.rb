@@ -1,16 +1,16 @@
-class CategoriesController < ApplicationController
+class Api::V1::CategoriesController < ApplicationController
 
     def create
        @category = Category.new(category_params)
        @category.save
     end
 
-    def new
-      @category = Category.new
-    end
+    # def new
+    #   @category = Category.new
+    # end
 
     def index
-    	@categories.Category.all
+    	@categories = Category.all
     	render json: @categories
     end
 
@@ -22,6 +22,6 @@ class CategoriesController < ApplicationController
     private
 
     def category_params
-        params.require(:category).permit(:name, :datum_id, :comment_id)
+        params.require(:category).permit(:name)
     end
 end

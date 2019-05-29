@@ -1,16 +1,16 @@
-class CommentsController < ApplicationController
+class Api::V1::CommentsController < ApplicationController
 
   def create
      @comment = Comment.new(comment_params)
      @comment.save
   end
 
-  def new
-    @comment = Comment.new
-  end
+  # def new
+  #   @comment = Comment.new
+  # end
 
   def index
-  	@comments.Comment.all
+  	@comments = Comment.all
   	render json: @comments
   end
 
@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-      params.require(:comment).permit(:content)
+      params.require(:comment).permit(:content, :category_id)
   end
 
 end
